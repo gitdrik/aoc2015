@@ -1,8 +1,7 @@
 open("06.txt") do f
-    ls = readlines(f)
     lights = falses(1000,1000)
     lights2 = zeros(Int,1000,1000)
-    for l ∈ ls
+    for l ∈ eachline(f)
         ws = split(l)
         xl, yl = parse.(Int, split(ws[end-2],',')).+1
         xh, yh = parse.(Int, split(ws[end],',')).+1
