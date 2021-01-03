@@ -23,7 +23,7 @@ open("07.txt") do f
         known[w] = n
         return n
     end
-    a = Int(emulate("a"))
+    a = emulate("a")
     println("Part 1: ", a)
 
     known = Dict{String,UInt16}("b" => a)
