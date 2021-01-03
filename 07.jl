@@ -1,11 +1,9 @@
 open("07.txt") do f
     net = Dict{String,Array{String}}(w => split(s) for (s, w) in split.(eachline(f), " -> "))
     known = Dict{String,UInt16}()
-
     function emulate(w)
         w ∈ keys(known) && return known[w]
-        n = tryparse(UInt16, w)
-        n != nothing && return n
+        w ∉ keys(net) && return parse(UInt16, w)
         ss = net[w]
         if length(ss)==1
             n = emulate(ss[1])
@@ -25,7 +23,6 @@ open("07.txt") do f
     end
     a = emulate("a")
     println("Part 1: ", a)
-
     known = Dict{String,UInt16}("b" => a)
     println("Part 2: ", emulate("a"))
 end
