@@ -1,19 +1,19 @@
-function multisaylength(look, n)
-    function say(look)
-        isempty(look) && return look
-        seq, i, last = [], 1, look[1]
-        for n in look[2:end]
-            if n==last
-                i +=1
-                continue
-            end
-            push!(seq,i,last)
-            i, last = 1, n
+function say(look)
+    isempty(look) && return look
+    seq, i, last = [], 1, look[1]
+    for n ∈ look[2:end]
+        if n==last
+            i += 1
+            continue
         end
-        push!(seq,i,last)
-        return seq
+        push!(seq, i, last)
+        i, last = 1, n
     end
+    push!(seq, i, last)
+    return seq
+end
 
+function multisaylength(look, n)
     for i ∈ 1:n
         look = say(look)
     end
