@@ -1,5 +1,3 @@
-function run()
-    for _ in 1:10
 valid(cs) = !any(c ∈ ['i','o','l'] for c in cs) &&
              any(cs[i]==cs[i+1]-1==cs[i+2]-2 for i ∈ 1:length(cs)-2) &&
              any(cs[i]==cs[i+1] && cs[j]==cs[j+1] for i ∈ 1:length(cs)-3 for j ∈ i+2:length(cs)-1)
@@ -20,5 +18,3 @@ end
 nxt = next("vzbxkghb")
 println("Part 1: ", nxt)
 println("Part 2: ", next(nxt))
-end
-end
