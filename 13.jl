@@ -25,17 +25,18 @@ open("13.txt") do f
         return seatings
     end
 
-    function happiestseating(prefs)
-        guests, n = Set(keys(prefs)), length(keys(prefs))
+    function max_happiness(prefs)
+        guests = Set(keys(prefs))
         seatings = allseatings(guests)
+        n = length(guests)
         maximum([sum([prefs[s[i]][s[mod1(i-1,n)]] + prefs[s[i]][s[mod1(i+1,n)]]
                    for i ∈ 1:n]) for s ∈ seatings])
     end
-    println("Part 1: ", happiestseating(prefs))
+    println("Part 1: ", max_happiness(prefs))
 
     for g ∈ keys(prefs)
         prefs[g]["myself"] = 0
         prefs["myself"][g] = 0
     end
-    println("Part 2: ", happiestseating(prefs))
+    println("Part 2: ", max_happiness(prefs))
 end
