@@ -29,7 +29,7 @@ open("13.txt") do f
         guests = Set(keys(prefs))
         seatings = allseatings(guests)
         happiness(s) = sum(
-            prefs[s[i]][s[i-1]] + prefs[s[i]][s[i+1]] for i ∈ 2:length(s)-1) +
+            prefs[s[i-1]][s[i]] + prefs[s[i]][s[i-1]] for i ∈ 2:length(s)) +
             prefs[s[1]][s[end]] + prefs[s[end]][s[1]]
         return maximum(happiness.(seatings))   
     end
