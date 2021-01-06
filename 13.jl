@@ -28,9 +28,10 @@ open("13.txt") do f
     function max_happiness(prefs)
         guests = Set(keys(prefs))
         seatings = allseatings(guests)
-        n = length(guests)
-        maximum([sum([prefs[s[i]][s[mod1(i-1,n)]] + prefs[s[i]][s[mod1(i+1,n)]]
-                   for i ∈ 1:n]) for s ∈ seatings])
+        happiness(s) = sum(
+            prefs[s[i]][s[i-1]] + prefs[s[i]][s[i+1]] for i ∈ 2:length(s)-1) +
+            prefs[s[1]][s[end]] + prefs[s[end]][s[1]]
+        return maximum(happiness.(seatings))   
     end
     println("Part 1: ", max_happiness(prefs))
 
