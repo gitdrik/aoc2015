@@ -14,7 +14,7 @@ open("13.txt") do f
         g1 = pop!(remaining)
         # place every remaining pair around, order not important
         threes = [[g2, g1, g3] for (g2,g3) ∈ combinations(remaining,2)]
-        # seat all threes with all remaining permutations
+        # seat all threes with all permutations of rest
         seatings = []
         for three ∈ threes
             rests = collect(setdiff(guests, g for g ∈ three))
