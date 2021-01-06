@@ -2,9 +2,9 @@ using DataStructures
 using Combinatorics
 
 open("13.txt") do f
-    prefs = DefaultDict{String,Dict{String, Int}}(Dict())
+    prefs = DefaultDict{String, Dict{String, Int}}(Dict())
     for l ∈ eachline(f)
-        ss = split(strip(l,'.'))
+        ss = split(strip(l, '.'))
         prefs[ss[1]][ss[11]] = ss[3]=="lose" ? -parse(Int,ss[4]) : parse(Int,ss[4])
     end
 
@@ -13,13 +13,13 @@ open("13.txt") do f
         remaining = collect(guests)
         g1 = pop!(remaining)
         # place every remaining pair around, order not important
-        threes = [[g2, g1, g3] for (g2,g3) ∈ combinations(remaining,2)]
+        threes = [[g2, g1, g3] for (g2, g3) ∈ combinations(remaining, 2)]
         # seat all threes with all permutations of rest
         seatings = []
         for three ∈ threes
-            rests = collect(setdiff(guests, g for g ∈ three))
-            for rest ∈ permutations(rests)
-                push!(seatings, [three;rest])
+            rest = collect(setdiff(guests, g for g ∈ three))
+            for rs ∈ permutations(rest)
+                push!(seatings, [three; rs])
             end
         end
         return seatings
