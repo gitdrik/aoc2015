@@ -7,8 +7,8 @@ open("14.txt") do f
     dist(t, deer) = deer[2]*(t÷deer[5]*deer[3] + min(t % deer[5], deer[3]))
     println("Part 1: ", maximum(dist.(2503, raindeers)))
 
-    points = [0 for rd in raindeers]
-    for t in 1:2503
+    points = [0 for _ ∈ raindeers]
+    for t ∈ 1:2503
         dists = dist.(t, raindeers)
         points += dists .== maximum(dists)
     end
