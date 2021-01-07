@@ -1,10 +1,10 @@
 open("14.txt") do f
-    raindeers = [
-        # 1:name, 2:speed [km/s], 3:move time [s], 4:rest time [s], 5:cycle time [s]
-        [ws[1], parse(Int,ws[4]), parse(Int,ws[7]), parse(Int,ws[14]), parse(Int,ws[7])+parse(Int,ws[14])]
+    int(s) = parse(Int, s)
+    # 1:name, 2:speed [km/s], 3:move time [s], 4:rest time [s], 5:cycle time [s]
+    raindeers = [[ws[1], int(ws[4]), int(ws[7]), int(ws[14]), int(ws[7]) + int(ws[14])]
             for ws ∈ split.(eachline(f))]
 
-    dist(t, deer) = deer[2]*(t÷deer[5]*deer[3] + min(t % deer[5], deer[3]))
+    dist(t, deer) = deer[2] * (t ÷ deer[5] * deer[3] + min(t % deer[5], deer[3]))
     println("Part 1: ", maximum(dist.(2503, raindeers)))
 
     points = [0 for _ ∈ raindeers]
