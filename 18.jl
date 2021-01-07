@@ -1,4 +1,3 @@
-using Combinatorics
 open("18.txt") do f
     G = falses(102,102)
     for (i,l) ∈ enumerate(eachline(f))
