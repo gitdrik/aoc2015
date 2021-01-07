@@ -1,7 +1,7 @@
 using Combinatorics
 open("18.txt") do f
     G = falses(102,102)
-    for (i,l) in enumerate(eachline(f))
+    for (i,l) ∈ enumerate(eachline(f))
         G[i+1,:] = [[0];[c=='#' for c ∈ l];[0]]
     end
     G2 = deepcopy(G)
