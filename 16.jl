@@ -23,5 +23,5 @@ open("16.txt") do f
         end
         return true
     end
-    println("Part 1: ", findfirst(test2, aunts))
+    println("Part 2: ", findfirst(test2, aunts))
 end
