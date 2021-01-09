@@ -1,8 +1,8 @@
 function firsthousewith(n)
-    limit = n ÷ 10
-    houses = zeros(Int, limit)
-    for elf ∈ 1:limit
-        for i ∈ elf:elf:limit
+    hilimit = n ÷ 10
+    houses = ones(Int, hilimit)
+    for elf ∈ 2:hilimit
+        for i ∈ elf:elf:hilimit
             houses[i] += elf * 10
         end
     end
@@ -11,10 +11,10 @@ end
 println("Part 1: ", firsthousewith(36000000))
 
 function lazyfirsthousewith(n)
-    limit = n ÷ 11
-    houses = zeros(Int, limit)
-    for elf ∈ 1:limit
-        for i ∈ elf:elf:min(elf * 50, limit)
+    hilimit = n ÷ 11
+    houses = zeros(Int, hilimit)
+    for elf ∈ 1:hilimit
+        for i ∈ elf:elf:min(elf * 50, hilimit)
             houses[i] += elf * 11
         end
     end
