@@ -1,19 +1,16 @@
 function bossfight()
-    #            [cost, mana, heal, dmge, shld, time ]
+    boss, player, mana = 55, 50, 500
+               # [cost, mana, heal, dmge, shld, time ]
     spellshop = [[  53,    0,    0,    4,    0,    1 ], # Magic Missile
                  [  73,    0,    2,    2,    0,    1 ], # Drain
                  [ 113,    0,    0,    0,    7,    6 ], # Shield
                  [ 173,    0,    0,    3,    0,    6 ], # Poison
                  [ 229,  101,    0,    0,    0,    5 ]] # Recharge
 
-    boss, player, mana = 55, 50, 500
-
     function play(boss, player, spells, mana, playersturn, cost, maxcost, hardmode)
         cost ≥ maxcost && return typemax(Int)
-        if hardmode && playersturn
-            player -= 1
-            player ≤ 0 && return typemax(Int)
-        end
+        player -= hardmode && playersturn
+        player ≤ 0 && return typemax(Int)
         if !isempty(spells)
             mana   += sum([s[2] for s in spells])
             player += sum([s[3] for s in spells])
@@ -32,9 +29,7 @@ function bossfight()
             end
             return maxcost
         else
-            player -= 8-shield
-            player ≤ 0 && return typemax(Int)
-            return play(boss, player, spells, mana, true, cost, maxcost, hardmode)
+            return play(boss, player+shield-8, spells, mana, true, cost, maxcost, hardmode)
         end
     end
     println("Part 1: ", play(boss, player, [], mana, true, 0, typemax(Int), false))
